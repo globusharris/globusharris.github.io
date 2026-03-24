@@ -1,136 +1,676 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ira Globus-Harris</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    .header {
-      text-align: center;
-      margin-top: 20px;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #faf9f7;
+      --text: #1a1a1a;
+      --text-muted: #6b6760;
+      --accent: #2a4a7f;
+      --accent-light: #e8eef7;
+      --border: #e2ddd8;
+      --serif: 'EB Garamond', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--serif);
+      font-size: 18px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ── */
+    .site-wrapper {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    aside {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 52px 36px;
+      border-right: 1px solid var(--border);
+      background: #f5f3f0;
+      overflow-y: auto;
+    }
+
+    .headshot-wrap {
+      margin-bottom: 28px;
     }
 
     .headshot {
-      width: 150px;
-      height: auto;
-      border-radius: 50%; /* makes it circular */
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 3px solid var(--border);
+    }
+
+    .sidebar-name {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      font-weight: 500;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .sidebar-title {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1.5;
+      margin-bottom: 28px;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: auto;
+    }
+
+    nav a {
+      font-family: var(--sans);
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 5px 0;
+      letter-spacing: 0.02em;
+      transition: color 0.15s;
+      border-left: 2px solid transparent;
+      padding-left: 10px;
+      margin-left: -10px;
+    }
+
+    nav a:hover {
+      color: var(--accent);
+      border-left-color: var(--accent);
+    }
+
+    .sidebar-contact {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .sidebar-contact a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    /* ── Main content ── */
+    main {
+      padding: 64px 72px 96px;
+      max-width: 780px;
+    }
+
+    section {
+      margin-bottom: 72px;
+      opacity: 0;
+      transform: translateY(18px);
+      animation: fadeUp 0.55s ease forwards;
+    }
+
+    section:nth-child(1) { animation-delay: 0.05s; }
+    section:nth-child(2) { animation-delay: 0.12s; }
+    section:nth-child(3) { animation-delay: 0.19s; }
+    section:nth-child(4) { animation-delay: 0.26s; }
+    section:nth-child(5) { animation-delay: 0.33s; }
+    section:nth-child(6) { animation-delay: 0.40s; }
+    section:nth-child(7) { animation-delay: 0.47s; }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1.section-title {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 22px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── About ── */
+    .about-text p {
+      margin-bottom: 1.1em;
+      color: #2e2b27;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-text a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent-light);
+      transition: border-color 0.15s;
+    }
+
+    .about-text a:hover { border-bottom-color: var(--accent); }
+
+    strong { font-weight: 600; }
+
+    /* ── Publications ── */
+    .pub-list {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .pub-item {
+      padding-left: 18px;
+      border-left: 2px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .pub-item:hover { border-left-color: var(--accent); }
+
+    .pub-venue {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .pub-venue .year {
+      color: var(--accent);
+      margin-left: 6px;
+    }
+
+    .pub-title {
+      font-size: 1rem;
+      font-weight: 500;
+      line-height: 1.45;
+      margin-bottom: 5px;
+    }
+
+    .pub-title a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .pub-title a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent-light);
+    }
+
+    .pub-authors {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .pub-badge {
+      display: inline-block;
+      margin-top: 6px;
+      font-family: var(--sans);
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--accent-light);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 2px;
+    }
+
+    /* ── Talks ── */
+    .talk-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .talk-item {
+      display: grid;
+      grid-template-columns: 54px 1fr;
+      gap: 16px;
+      align-items: baseline;
+    }
+
+    .talk-year {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 400;
+      text-align: right;
+    }
+
+    .talk-text {
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .talk-venue {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Awards ── */
+    .award-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .award-item {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+
+    .award-year {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      min-width: 36px;
+    }
+
+    .award-text {
+      font-size: 0.95rem;
+    }
+
+    .award-text a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .award-text a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+
+    /* ── Teaching ── */
+    .teaching-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .teaching-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 16px;
+      font-size: 0.92rem;
+      align-items: baseline;
+    }
+
+    .teaching-term {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-align: right;
+      padding-top: 2px;
+    }
+
+    /* ── Affiliations ── */
+    .affil-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .affil-tag {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      padding: 5px 14px;
+      border-radius: 2px;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+
+    .affil-tag:hover {
+      background: var(--accent-light);
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .site-wrapper { grid-template-columns: 1fr; }
+
+      aside {
+        position: static;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        padding: 28px 24px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        gap: 20px;
+        align-items: center;
+      }
+
+      .headshot { width: 70px; height: 70px; }
+      .headshot-wrap { margin-bottom: 0; }
+      .sidebar-name { font-size: 1.1rem; }
+      nav { flex-direction: row; flex-wrap: wrap; gap: 4px 16px; }
+      .sidebar-contact { margin-top: 0; padding-top: 0; border-top: none; }
+
+      main { padding: 40px 24px 72px; }
+
+      .teaching-item { grid-template-columns: 1fr; gap: 2px; }
+      .teaching-term { text-align: left; }
     }
   </style>
 </head>
 <body>
 
-  <div class="header">
-    <img src="headshot.jpeg" alt="This is Ira's face." class="headshot">
-    <h1>Ira Globus-Harris</h1>
-  </div>
+<div class="site-wrapper">
 
-  <h1> About Me </h1>
+  <!-- ── Sidebar ── -->
+  <aside>
+    <div class="headshot-wrap">
+      <img src="headshot.jpeg" alt="Ira Globus-Harris" class="headshot">
+    </div>
 
-<p>
-My name is Ira Globus-Harris. I am an Assistant Research Professor at Cornell's Center for Data Science for Enterprise and Society, 
-co-hosted by <a href="https://gargnikhil.com/">Nikhil Garg</a> and <a href=https://www.danah.org/>danah boyd</a>. 
+    <div>
+      <p class="sidebar-name">Ira Globus-Harris</p>
+      <p class="sidebar-title">Assistant Research Professor<br>Cornell University</p>
 
-My work, which is grounded in the <b>algorithmic foundations of responsible computing</b>,
-broadly looks at mechanisms to resolve potential 
-harms incurred by AI-driven decision-making. In particular, my work focuses on using algorithmic techniques which are 
-<b>scalable for real-world use, holistically consider an algorithm in its broader context</b>, and which <b>flexibly incorporate human input</b>. I am particularly interested in methods which provide 
-flexibility to adjust models after deployment in scalable and efficient ways. 
+      <nav>
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#talks">Talks</a>
+        <a href="#awards">Awards</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#affiliations">Affiliations</a>
+      </nav>
 
-<p>
-I received my PhD from the University of Pennsylvania, where I was co-advised by <a href="https://www.cis.upenn.edu/~aaroth/">Aaron 
-  Roth</a> and <a href="https://www.cis.upenn.edu/~mkearns/">Michael Kearns</a>
-    Prior to Penn, I worked at Boston University as a 
-    software engineer with <a href="https://www.bu.edu/hic/centers-initiatives-labs/sail/">SAIL</a> and with the <a href=https://privacytools.seas.harvard.edu/>Harvard Privacy Tools Project</a>. I received my Bachelor's degree from
-    Reed College in Portland, OR.
-</p>
+      <div class="sidebar-contact">
+        img53 at cornell dot edu
+      </div>
+    </div>
+  </aside>
 
-<h1> Publications </h1>
+  <!-- ── Main ── -->
+  <main>
 
-<p>
-Collina, Natalie; Globus-Harris, Ira; Goel, Surbhi; Gupta, Varun; Roth, Aaron; Shi, Mirah. "<a href ="https://arxiv.org/abs/2504.06075">Collaborative Prediction: Tractable Information Aggregation via Agreement</a>. ACM Symposium on Discrete Algorithms (SODA). 2026.
-</p>
+    <!-- About -->
+    <section id="about">
+      <h1 class="section-title">About</h1>
+      <div class="about-text">
+        <p>
+          I am an Assistant Research Professor at Cornell's <em>Center for Data Science for Enterprise and Society</em>,
+          co-hosted by <a href="https://gargnikhil.com/">Nikhil Garg</a> and <a href="https://www.danah.org/">danah boyd</a>.
+        </p>
+        <p>
+          My work is grounded in the <strong>algorithmic foundations of responsible computing</strong>.
+          I broadly study mechanisms to resolve potential harms incurred by AI-driven decision-making,
+          with a focus on techniques that are <strong>scalable for real-world use</strong>,
+          <strong>holistically consider an algorithm in its broader context</strong>,
+          and <strong>flexibly incorporate human input</strong>.
+          I am particularly interested in methods that allow efficient post-deployment model adjustment.
+        </p>
+        <p>
+          I received my PhD from the University of Pennsylvania, advised by
+          <a href="https://www.cis.upenn.edu/~aaroth/">Aaron Roth</a> and
+          <a href="https://www.cis.upenn.edu/~mkearns/">Michael Kearns</a>.
+          Prior to Penn, I worked at Boston University as a software engineer with
+          <a href="https://www.bu.edu/hic/centers-initiatives-labs/sail/">SAIL</a>
+          and with the <a href="https://privacytools.seas.harvard.edu/">Harvard Privacy Tools Project</a>.
+          I received my bachelor's degree from Reed College in Portland, OR.
+        </p>
+      </div>
+    </section>
 
-<p>
-Globus-Harris, Ira; Gupta, Varun; Kearns, Michael; Roth, Aaron. "<a href="https://arxiv.org/abs/2405.16752">Ensembing for Constrained Optimization"</a>. Foundations of Responsible Computing (FORC). 2025. 
-</p>
+    <!-- Publications -->
+    <section id="publications">
+      <h1 class="section-title">Publications</h1>
+      <div class="pub-list">
 
-<p> 
-Globus-Harris, Ira; Harrison, Declan; Kearns, Michael; Perona, Pietro; Roth, Aaron. "<a href = "https://arxiv.org/abs/2402.10795">Diversified Ensembling: An Experiment in Crowdsourced Machine Learning.</a>" ACM Conference on Fairness, Accountability, and Transparency (FAccT). 2024.
-</p>
+        <div class="pub-item">
+          <div class="pub-venue">SODA <span class="year">2026</span></div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2504.06075">Collaborative Prediction: Tractable Information Aggregation via Agreement</a></div>
+          <div class="pub-authors">Collina, Natalie; Globus-Harris, Ira; Goel, Surbhi; Gupta, Varun; Roth, Aaron; Shi, Mirah</div>
+        </div>
 
-<p>
-Globus-Harris, Ira; Harrison, Declan; Kearns, Michael; Roth, Aaron; Sorrell, Jessica. "<a href="https://arxiv.org/abs/2301.13767">Multicalibration as Boosting for Regression.</a>" International Conference on Machine Learning (ICML). 2023. (Oral presentation).
-</p>
+        <div class="pub-item">
+          <div class="pub-venue">FORC <span class="year">2025</span></div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2405.16752">Ensembing for Constrained Optimization</a></div>
+          <div class="pub-authors">Globus-Harris, Ira; Gupta, Varun; Kearns, Michael; Roth, Aaron</div>
+        </div>
 
-<p>
-Globus-Harris, Ira; Gupta, Varun; Jung, Christopher; Kearns, Michael; Morgenstern, Jamie; Roth, Aaron. "<a href="https://arxiv.org/abs/2209.07312"> Multicalibrated Regression for Downstream Fairness</a>". ACM Conference on Artificial Intelligence, Ethics, and Society (AIES). 2023.
-<p>
+        <div class="pub-item">
+          <div class="pub-venue">FAccT <span class="year">2024</span></div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2402.10795">Diversified Ensembling: An Experiment in Crowdsourced Machine Learning</a></div>
+          <div class="pub-authors">Globus-Harris, Ira; Harrison, Declan; Kearns, Michael; Perona, Pietro; Roth, Aaron</div>
+        </div>
 
-Globus-Harris, Ira; Kearns, Michael; Roth, Aaron. "<a href="https://arxiv.org/pdf/2201.10408.pdf">An Algorithmic Framework for Bias Bounties</a>." ACM Conference on Fairness, Accountability, and Transparency (FAccT). 2022.
-</p>
-<p>
-Diana, Emily; Gill, Wesley; Globus-Harris, Ira; Kearns, Michael; Roth, Aaron; Sharifi-Malvajerdi, Saeed. "<a href="https://arxiv.org/abs/2102.08454">Lexicographically Fair Learning: Algorithms and Generalization."</a> Foundations of Responsible Computing (FORC). 2021.
-</p>
+        <div class="pub-item">
+          <div class="pub-venue">ICML <span class="year">2023</span></div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2301.13767">Multicalibration as Boosting for Regression</a></div>
+          <div class="pub-authors">Globus-Harris, Ira; Harrison, Declan; Kearns, Michael; Roth, Aaron; Sorrell, Jessica</div>
+          <div><span class="pub-badge">Oral Presentation</span></div>
+        </div>
 
-<p>
-Drechsler, Joerg; Globus-Harris, Ira; McMillan, Audra; Sarathy, Jayshree; Smith, Adam. “<a href="https://arxiv.org/abs/2106.10333">Non-parametric Differentially Private Confidence Intervals for the Median.</a>”  Journal of Survey Statistics and Methodology Special Issue on Privacy. 2022.
-</p>
+        <div class="pub-item">
+          <div class="pub-venue">AIES <span class="year">2023</span></div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2209.07312">Multicalibrated Regression for Downstream Fairness</a></div>
+          <div class="pub-authors">Globus-Harris, Ira; Gupta, Varun; Jung, Christopher; Kearns, Michael; Morgenstern, Jamie; Roth, Aaron</div>
+        </div>
 
-<p>
-Swanberg, Marika; Globus-Harris, Ira; Griffith, Iris; Ritz, Anna; Groce, Adam; Bray, Andrew. “<a href="https://arxiv.org/abs/1903.00534">Improved Differentially Private Analysis of Variance.</a>” Privacy Enhancing Technologies Symposium (PETS). 2019.
-</p>
+        <div class="pub-item">
+          <div class="pub-venue">FAccT <span class="year">2022</span></div>
+          <div class="pub-title"><a href="https://arxiv.org/pdf/2201.10408.pdf">An Algorithmic Framework for Bias Bounties</a></div>
+          <div class="pub-authors">Globus-Harris, Ira; Kearns, Michael; Roth, Aaron</div>
+        </div>
 
-<p>
-Qin, Lucy; Lapets, Andre; Jansen, Frederick; Flockhart, Peter; Dak Albab, Kinan, Globus-Harris, Ira. "<a href="https://www.usenix.org/conference/soups2019/presentation/qin">From Usability to Secure Computing and Back Again.</a>” Fifteenth Symposium on Usable Privacy and Security (SOUPS). 2019
-</p>
+        <div class="pub-item">
+          <div class="pub-venue">Journal of Survey Statistics and Methodology <span class="year">2022</span></div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2106.10333">Non-parametric Differentially Private Confidence Intervals for the Median</a></div>
+          <div class="pub-authors">Drechsler, Joerg; Globus-Harris, Ira; McMillan, Audra; Sarathy, Jayshree; Smith, Adam</div>
+        </div>
 
-<p>
-Dak Albab, Kinan; Issa, Rawane; Lapets, Andrei; Flockhart, Peter; Qin, Lucy; Globus-Harris, Ira. “<a href="https://ieeexplore.ieee.org/document/8901552">Tutorial: Deploying Secure Multi-Party Computation on the Web Using JIFF.</a>” IEEE Secure Development (SecDev), 2019.
-</p>
+        <div class="pub-item">
+          <div class="pub-venue">FORC <span class="year">2021</span></div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2102.08454">Lexicographically Fair Learning: Algorithms and Generalization</a></div>
+          <div class="pub-authors">Diana, Emily; Gill, Wesley; Globus-Harris, Ira; Kearns, Michael; Roth, Aaron; Sharifi-Malvajerdi, Saeed</div>
+        </div>
 
+        <div class="pub-item">
+          <div class="pub-venue">PETS <span class="year">2019</span></div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/1903.00534">Improved Differentially Private Analysis of Variance</a></div>
+          <div class="pub-authors">Swanberg, Marika; Globus-Harris, Ira; Griffith, Iris; Ritz, Anna; Groce, Adam; Bray, Andrew</div>
+        </div>
 
-<h1> Talks </h1>
+        <div class="pub-item">
+          <div class="pub-venue">SOUPS <span class="year">2019</span></div>
+          <div class="pub-title"><a href="https://www.usenix.org/conference/soups2019/presentation/qin">From Usability to Secure Computing and Back Again</a></div>
+          <div class="pub-authors">Qin, Lucy; Lapets, Andre; Jansen, Frederick; Flockhart, Peter; Dak Albab, Kinan; Globus-Harris, Ira</div>
+        </div>
 
-"Diversified Ensembling: An Experiment in Crowdsourced Machine Learning," Oral presentation at FAccT, June 2024. <br>
-"Collaborative Crowdsourced Machine Learning," Stanford Fairness Seminar, May 2024. <br>
-"Multicalibration as Boosting for Regression," Institute for Operations Research and Management Sciences (INFORMS) Annual Meeting, October 2023. <br>
-"Multicalibration as Boosting for Regression," Oral presentation at ICML, August 2023. <br>
-"Multicalibration as Boosting for Regression," Foundations on Responsible Computing (FORC), June 2023. <br>
-“An Algorithmic Framework for Bias Bounties,” Institute for Operations Research and Management Sciences (INFORMS) Annual Meeting, October 2022. <br>
-“An Algorithmic Framework for Bias Bounties,”Oral presentation at FAccT, June 2022. <br>
-“An Algorithmic Framework for Bias Bounties,” Reed College Computer Science Colloquium, April 2022. <br>
-"Lexicographically Fair Learning: Algorithms and Generalization," Theory of Computation for Fairness Seminar, Simons Institute Collaboration, October 2021. <br>
+        <div class="pub-item">
+          <div class="pub-venue">IEEE SecDev <span class="year">2019</span></div>
+          <div class="pub-title"><a href="https://ieeexplore.ieee.org/document/8901552">Tutorial: Deploying Secure Multi-Party Computation on the Web Using JIFF</a></div>
+          <div class="pub-authors">Dak Albab, Kinan; Issa, Rawane; Lapets, Andrei; Flockhart, Peter; Qin, Lucy; Globus-Harris, Ira</div>
+        </div>
 
-<h1> Awards and Recognitions </h1>
+      </div>
+    </section>
 
-<a href="https://asset.seas.upenn.edu/penn-engineering-ph-d-students-receive-funding-from-amazon-to-advance-trustworthy-ai/">AWS AI ASSET Fellow</a>, 2024. <br>
-<a href="https://eecsrisingstars2023.cc.gatech.edu/participants/Ira_Globus-Harris/">EECS Rising Star by Georgia Tech</a>, 2023.
+    <!-- Talks -->
+    <section id="talks">
+      <h1 class="section-title">Talks</h1>
+      <div class="talk-list">
+        <div class="talk-item">
+          <span class="talk-year">2024</span>
+          <div>
+            <div class="talk-text">"Diversified Ensembling: An Experiment in Crowdsourced Machine Learning"</div>
+            <div class="talk-venue">Oral presentation at FAccT, June 2024</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">2024</span>
+          <div>
+            <div class="talk-text">"Collaborative Crowdsourced Machine Learning"</div>
+            <div class="talk-venue">Stanford Fairness Seminar, May 2024</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">2023</span>
+          <div>
+            <div class="talk-text">"Multicalibration as Boosting for Regression"</div>
+            <div class="talk-venue">INFORMS Annual Meeting, October 2023</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">2023</span>
+          <div>
+            <div class="talk-text">"Multicalibration as Boosting for Regression"</div>
+            <div class="talk-venue">Oral presentation at ICML, August 2023</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">2023</span>
+          <div>
+            <div class="talk-text">"Multicalibration as Boosting for Regression"</div>
+            <div class="talk-venue">Foundations on Responsible Computing (FORC), June 2023</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">2022</span>
+          <div>
+            <div class="talk-text">"An Algorithmic Framework for Bias Bounties"</div>
+            <div class="talk-venue">INFORMS Annual Meeting, October 2022</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">2022</span>
+          <div>
+            <div class="talk-text">"An Algorithmic Framework for Bias Bounties"</div>
+            <div class="talk-venue">Oral presentation at FAccT, June 2022</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">2022</span>
+          <div>
+            <div class="talk-text">"An Algorithmic Framework for Bias Bounties"</div>
+            <div class="talk-venue">Reed College Computer Science Colloquium, April 2022</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">2021</span>
+          <div>
+            <div class="talk-text">"Lexicographically Fair Learning: Algorithms and Generalization"</div>
+            <div class="talk-venue">Theory of Computation for Fairness Seminar, Simons Institute, October 2021</div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<h1> Teaching </h1>
+    <!-- Awards -->
+    <section id="awards">
+      <h1 class="section-title">Awards &amp; Recognitions</h1>
+      <div class="award-list">
+        <div class="award-item">
+          <span class="award-year">2024</span>
+          <span class="award-text"><a href="https://asset.seas.upenn.edu/penn-engineering-ph-d-students-receive-funding-from-amazon-to-advance-trustworthy-ai/">AWS AI ASSET Fellow</a></span>
+        </div>
+        <div class="award-item">
+          <span class="award-year">2023</span>
+          <span class="award-text"><a href="https://eecsrisingstars2023.cc.gatech.edu/participants/Ira_Globus-Harris/">EECS Rising Star</a>, Georgia Tech</span>
+        </div>
+      </div>
+    </section>
 
-Fall 2022-Spring 2024: Undergraduate thesis advisor for Reed College <br>
-Spring 2022: Head TA and course design, U Penn CIS 423/523 Ethical Algorithm Design <br>
-Spring 2022: TA, U Penn NETS 412 Algorithmic Game Theory <br>
-Fall 2021: Head TA and course design, U Penn CIS 320 Introduction to Algorithms <br>
-2015-2018: TA and tutor, Reed Math 121 Introduction to Programming <br>
-2017-2018: Instructor and course design, Computer Science Outreach Program <br>
-2017: Tutor, Reed Physics 202 Modern Physics <br>
-2016: Tutor, Reed Physics 201 Oscillations and Waves <br>
-2015-2016: Tutor, Reed Humanities 110 <br>
+    <!-- Teaching -->
+    <section id="teaching">
+      <h1 class="section-title">Teaching</h1>
+      <div class="teaching-list">
+        <div class="teaching-item">
+          <span class="teaching-term">Fall 2022–Spring 2024</span>
+          <span>Undergraduate thesis advisor, Reed College</span>
+        </div>
+        <div class="teaching-item">
+          <span class="teaching-term">Spring 2022</span>
+          <span>Head TA &amp; course design — CIS 423/523 Ethical Algorithm Design, University of Pennsylvania</span>
+        </div>
+        <div class="teaching-item">
+          <span class="teaching-term">Spring 2022</span>
+          <span>TA — NETS 412 Algorithmic Game Theory, University of Pennsylvania</span>
+        </div>
+        <div class="teaching-item">
+          <span class="teaching-term">Fall 2021</span>
+          <span>Head TA &amp; course design — CIS 320 Introduction to Algorithms, University of Pennsylvania</span>
+        </div>
+        <div class="teaching-item">
+          <span class="teaching-term">2015–2018</span>
+          <span>TA &amp; tutor — Math 121 Introduction to Programming, Reed College</span>
+        </div>
+        <div class="teaching-item">
+          <span class="teaching-term">2017–2018</span>
+          <span>Instructor &amp; course design — Computer Science Outreach Program</span>
+        </div>
+        <div class="teaching-item">
+          <span class="teaching-term">2017</span>
+          <span>Tutor — Physics 202 Modern Physics, Reed College</span>
+        </div>
+        <div class="teaching-item">
+          <span class="teaching-term">2016</span>
+          <span>Tutor — Physics 201 Oscillations and Waves, Reed College</span>
+        </div>
+        <div class="teaching-item">
+          <span class="teaching-term">2015–2016</span>
+          <span>Tutor — Humanities 110, Reed College</span>
+        </div>
+      </div>
+    </section>
 
-<h1> Past Research Affiliations and Projects </h1>
+    <!-- Affiliations -->
+    <section id="affiliations">
+      <h1 class="section-title">Past Research Affiliations</h1>
+      <p style="font-size:0.92rem; color: var(--text-muted); margin-bottom: 18px; font-family: var(--sans);">
+        Amazon AWS intern (Summer 2021–Spring 2022, Summer 2023, Summer 2024)
+      </p>
+      <div class="affil-list">
+        <a class="affil-tag" href="https://sail.bu.edu">Boston University SAIL</a>
+        <a class="affil-tag" href="https://privacytools.seas.harvard.edu">Harvard Privacy Tools Project</a>
+        <a class="affil-tag" href="https://smartnoise.org">SmartNoise</a>
+        <a class="affil-tag" href="https://opendp.org">OpenDP</a>
+        <a class="affil-tag" href="https://multiparty.org">Multiparty.org</a>
+      </div>
+    </section>
 
-Amazon AWS intern (Summer 2021-Spring 2022, Summer 2023, Summer 2024) </a><br>
-<a href="https://sail.bu.edu"> Boston University SAIL </a><br>
-<a href="https://privacytools.seas.harvard.edu"> Harvard Privacy Tools Project </a><br>
-<a href="https://smartnoise.org"> SmartNoise  </a><br>
-<a href="https://opendp.org"> OpenDP  </a><br>
-<a href="https://multiparty.org"> Multiparty.org </a><br>
-
-<h2> Contact Me </h2>
-Ira Globus-Harris <br>
-Email: img53 at cornell dot edu <br>
+  </main>
+</div>
 
 </body>
 </html>
-
