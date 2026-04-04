@@ -362,6 +362,53 @@
       color: var(--accent);
     }
 
+    /* ── Advising ── */
+    .advising-list {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .advising-item {
+      padding-left: 18px;
+      border-left: 2px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .advising-item:hover { border-left-color: var(--accent); }
+
+    .advising-name {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 3px;
+    }
+
+    .advising-name a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .advising-name a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent-light);
+    }
+
+    .advising-thesis {
+      font-size: 0.92rem;
+      font-style: italic;
+      color: #2e2b27;
+      margin-bottom: 3px;
+      line-height: 1.45;
+    }
+
+    .advising-meta {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
     /* ── Responsive ── */
     @media (max-width: 768px) {
       .site-wrapper { grid-template-columns: 1fr; }
@@ -412,10 +459,12 @@
         <a href="#awards">Awards</a>
         <a href="#teaching">Teaching</a>
         <a href="#affiliations">Affiliations</a>
+        <a href="#advising">Advising</a>
       </nav>
 
       <div class="sidebar-contact">
-        img53 at cornell dot edu
+        img53 at cornell dot edu<br>
+        <a href="cv.pdf" target="_blank">Curriculum Vitae</a>
       </div>
     </div>
   </aside>
@@ -459,144 +508,74 @@
         <div class="pub-item">
           <div class="pub-venue">SODA <span class="year">2026</span></div>
           <div class="pub-title"><a href="https://arxiv.org/abs/2504.06075">Collaborative Prediction: Tractable Information Aggregation via Agreement</a></div>
-          <div class="pub-authors">Collina, Natalie; Globus-Harris, Ira; Goel, Surbhi; Gupta, Varun; Roth, Aaron; Shi, Mirah</div>
+          <div class="pub-authors">Natalie Collina, Ira Globus-Harris, Surbhi Goel, Varun Gupta, Aaron Roth, Mirah Shi</div>
         </div>
 
         <div class="pub-item">
           <div class="pub-venue">FORC <span class="year">2025</span></div>
-          <div class="pub-title"><a href="https://arxiv.org/abs/2405.16752">Ensembing for Constrained Optimization</a></div>
-          <div class="pub-authors">Globus-Harris, Ira; Gupta, Varun; Kearns, Michael; Roth, Aaron</div>
+          <div class="pub-title"><a href="https://arxiv.org/abs/2405.16752">Model Ensembing for Constrained Optimization</a></div>
+          <div class="pub-authors">Ira Globus-Harris, Varun Gupta, Michael Kearns, Aaron Roth</div>
         </div>
 
         <div class="pub-item">
           <div class="pub-venue">FAccT <span class="year">2024</span></div>
           <div class="pub-title"><a href="https://arxiv.org/abs/2402.10795">Diversified Ensembling: An Experiment in Crowdsourced Machine Learning</a></div>
-          <div class="pub-authors">Globus-Harris, Ira; Harrison, Declan; Kearns, Michael; Perona, Pietro; Roth, Aaron</div>
+          <div class="pub-authors">Ira Globus-Harris, Declan Harrison, Michael Kearns, Pietro Perona, Aaron Roth</div>
         </div>
 
         <div class="pub-item">
           <div class="pub-venue">ICML <span class="year">2023</span></div>
           <div class="pub-title"><a href="https://arxiv.org/abs/2301.13767">Multicalibration as Boosting for Regression</a></div>
-          <div class="pub-authors">Globus-Harris, Ira; Harrison, Declan; Kearns, Michael; Roth, Aaron; Sorrell, Jessica</div>
+          <div class="pub-authors">Ira Globus-Harris, Declan Harrison, Michael Kearns, Aaron Roth, Jessica Sorrell</div>
           <div><span class="pub-badge">Oral Presentation</span></div>
         </div>
 
         <div class="pub-item">
           <div class="pub-venue">AIES <span class="year">2023</span></div>
           <div class="pub-title"><a href="https://arxiv.org/abs/2209.07312">Multicalibrated Regression for Downstream Fairness</a></div>
-          <div class="pub-authors">Globus-Harris, Ira; Gupta, Varun; Jung, Christopher; Kearns, Michael; Morgenstern, Jamie; Roth, Aaron</div>
+          <div class="pub-authors">Ira Globus-Harris, Varun Gupta, Christopher Jung, Michael Kearns, Jamie Morgenstern, Aaron Roth</div>
         </div>
 
         <div class="pub-item">
           <div class="pub-venue">FAccT <span class="year">2022</span></div>
           <div class="pub-title"><a href="https://arxiv.org/pdf/2201.10408.pdf">An Algorithmic Framework for Bias Bounties</a></div>
-          <div class="pub-authors">Globus-Harris, Ira; Kearns, Michael; Roth, Aaron</div>
+          <div class="pub-authors">Ira Globus-Harris, Michael Kearns, Aaron Roth</div>
         </div>
 
         <div class="pub-item">
           <div class="pub-venue">Journal of Survey Statistics and Methodology <span class="year">2022</span></div>
           <div class="pub-title"><a href="https://arxiv.org/abs/2106.10333">Non-parametric Differentially Private Confidence Intervals for the Median</a></div>
-          <div class="pub-authors">Drechsler, Joerg; Globus-Harris, Ira; McMillan, Audra; Sarathy, Jayshree; Smith, Adam</div>
+          <div class="pub-authors">Joerg Drechsler, Ira Globus-Harris, Audra McMillan, Jayshree Sarathy, Adam Smith</div>
         </div>
 
         <div class="pub-item">
           <div class="pub-venue">FORC <span class="year">2021</span></div>
           <div class="pub-title"><a href="https://arxiv.org/abs/2102.08454">Lexicographically Fair Learning: Algorithms and Generalization</a></div>
-          <div class="pub-authors">Diana, Emily; Gill, Wesley; Globus-Harris, Ira; Kearns, Michael; Roth, Aaron; Sharifi-Malvajerdi, Saeed</div>
+          <div class="pub-authors">Emily Diana, Wesley Gill, Ira Globus-Harris, Michael Kearns, Aaron Roth, Saeed Sharifi-Malvajerdi</div>
         </div>
 
         <div class="pub-item">
           <div class="pub-venue">PETS <span class="year">2019</span></div>
           <div class="pub-title"><a href="https://arxiv.org/abs/1903.00534">Improved Differentially Private Analysis of Variance</a></div>
-          <div class="pub-authors">Swanberg, Marika; Globus-Harris, Ira; Griffith, Iris; Ritz, Anna; Groce, Adam; Bray, Andrew</div>
+          <div class="pub-authors">Marika Swanberg, Ira Globus-Harris, Iris Griffith, Anna Ritz, Adam Groce, Andrew Bray</div>
         </div>
 
         <div class="pub-item">
           <div class="pub-venue">SOUPS <span class="year">2019</span></div>
           <div class="pub-title"><a href="https://www.usenix.org/conference/soups2019/presentation/qin">From Usability to Secure Computing and Back Again</a></div>
-          <div class="pub-authors">Qin, Lucy; Lapets, Andre; Jansen, Frederick; Flockhart, Peter; Dak Albab, Kinan; Globus-Harris, Ira</div>
+          <div class="pub-authors">Lucy Qin, Andrei Lapets, Frederick Jansen, Peter Flockhart, Kinan Dak Albab, Ira Globus-Harris</div>
         </div>
 
         <div class="pub-item">
           <div class="pub-venue">IEEE SecDev <span class="year">2019</span></div>
           <div class="pub-title"><a href="https://ieeexplore.ieee.org/document/8901552">Tutorial: Deploying Secure Multi-Party Computation on the Web Using JIFF</a></div>
-          <div class="pub-authors">Dak Albab, Kinan; Issa, Rawane; Lapets, Andrei; Flockhart, Peter; Qin, Lucy; Globus-Harris, Ira</div>
+          <div class="pub-authors">Kinan Dak Albab, Rawane Issa, Andrei Lapets, Peter Flockhart, Lucy Qin, Ira Globus-Harris</div>
         </div>
 
       </div>
     </section>
 
-    <!-- Talks -->
-    <section id="talks">
-      <h1 class="section-title">Talks</h1>
-      <div class="talk-list">
-        <div class="talk-item">
-          <span class="talk-year">2024</span>
-          <div>
-            <div class="talk-text">"Diversified Ensembling: An Experiment in Crowdsourced Machine Learning"</div>
-            <div class="talk-venue">Oral presentation at FAccT, June 2024</div>
-          </div>
-        </div>
-        <div class="talk-item">
-          <span class="talk-year">2024</span>
-          <div>
-            <div class="talk-text">"Collaborative Crowdsourced Machine Learning"</div>
-            <div class="talk-venue">Stanford Fairness Seminar, May 2024</div>
-          </div>
-        </div>
-        <div class="talk-item">
-          <span class="talk-year">2023</span>
-          <div>
-            <div class="talk-text">"Multicalibration as Boosting for Regression"</div>
-            <div class="talk-venue">INFORMS Annual Meeting, October 2023</div>
-          </div>
-        </div>
-        <div class="talk-item">
-          <span class="talk-year">2023</span>
-          <div>
-            <div class="talk-text">"Multicalibration as Boosting for Regression"</div>
-            <div class="talk-venue">Oral presentation at ICML, August 2023</div>
-          </div>
-        </div>
-        <div class="talk-item">
-          <span class="talk-year">2023</span>
-          <div>
-            <div class="talk-text">"Multicalibration as Boosting for Regression"</div>
-            <div class="talk-venue">Foundations on Responsible Computing (FORC), June 2023</div>
-          </div>
-        </div>
-        <div class="talk-item">
-          <span class="talk-year">2022</span>
-          <div>
-            <div class="talk-text">"An Algorithmic Framework for Bias Bounties"</div>
-            <div class="talk-venue">INFORMS Annual Meeting, October 2022</div>
-          </div>
-        </div>
-        <div class="talk-item">
-          <span class="talk-year">2022</span>
-          <div>
-            <div class="talk-text">"An Algorithmic Framework for Bias Bounties"</div>
-            <div class="talk-venue">Oral presentation at FAccT, June 2022</div>
-          </div>
-        </div>
-        <div class="talk-item">
-          <span class="talk-year">2022</span>
-          <div>
-            <div class="talk-text">"An Algorithmic Framework for Bias Bounties"</div>
-            <div class="talk-venue">Reed College Computer Science Colloquium, April 2022</div>
-          </div>
-        </div>
-        <div class="talk-item">
-          <span class="talk-year">2021</span>
-          <div>
-            <div class="talk-text">"Lexicographically Fair Learning: Algorithms and Generalization"</div>
-            <div class="talk-venue">Theory of Computation for Fairness Seminar, Simons Institute, October 2021</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Awards -->
+     <!-- Awards -->
     <section id="awards">
       <h1 class="section-title">Awards &amp; Recognitions</h1>
       <div class="award-list">
@@ -611,14 +590,156 @@
       </div>
     </section>
 
+    <!-- Talks -->
+    <section id="talks">
+      <h1 class="section-title">Invited Talks</h1>
+      <div class="talk-list">
+        <div class="talk-item">
+          <span class="talk-year">Feb 2026</span>
+          <div>
+            <div class="talk-text">Collaborative Prediction via Tractable Agreement</div>
+            <div class="talk-venue">ML Scholars Workshop, Mohamed bin Zayed University of Artificial Intelligence</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">Dec 2025</span>
+          <div>
+            <div class="talk-text">Collaborative Prediction via Tractable Agreement</div>
+            <div class="talk-venue">Next10 in AI Series, Max Planck Institute for Software Systems </div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">Nov 2025</span>
+          <div>
+            <div class="talk-text">Collaborative Prediction via Tractable Agreement</div>
+            <div class="talk-venue">TOC4Fairness</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">Nov 2025</span>
+          <div>
+            <div class="talk-text">Collaborative Prediction via Tractable Agreement</div>
+            <div class="talk-venue">Computer Science Seminar, Colgate University</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">Oct 2025</span>
+          <div>
+            <div class="talk-text">Collaborative Prediction via Tractable Agreement</div>
+            <div class="talk-venue">Symposium on Mathematical Foundations of Trustworthy Learning, ELLIS Research Program</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">June 2025</span>
+          <div>
+            <div class="talk-text">Model Ensembling for Downstream Optimization</div>
+            <div class="talk-venue">Foundations of Responsible Computing (FORC) </div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">Mar 2025</span>
+          <div>
+            <div class="talk-text">Preventing D-Hacking with Adaptive Data Analysis</div>
+            <div class="talk-venue">Center for Technological Responsibility, Reimagination, and Redesign, Brown University </div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">June 2024</span>
+          <div>
+            <div class="talk-text">Diversified Ensembling: An Experiment in Crowdsourced Machine Learning</div>
+            <div class="talk-venue">ACM Conference on Fairness, Accountability, and Transparency (FAccT) </div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">May 2024</span>
+          <div>
+            <div class="talk-text">Collaborative Crowdsourced Machine Learning</div>
+            <div class="talk-venue">Stanford Fairness Seminar </div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">Oct 2023</span>
+          <div>
+            <div class="talk-text">Multicalibration as Boosting for Regression</div>
+            <div class="talk-venue">INFORMS Annual Meeting</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">Jul 2023</span>
+          <div>
+            <div class="talk-text">Multicalibration as Boosting for Regression</div>
+            <div class="talk-venue">International Conference on Learning Theory (ICML)</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">Jun 2023</span>
+          <div>
+            <div class="talk-text">Multicalibration as Boosting for Regression</div>
+            <div class="talk-venue">Foundations of Responsible Computing (FORC)</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">Oct 2022</span>
+          <div>
+            <div class="talk-text">An Algorithmic Framework for Bias Bounties</div>
+            <div class="talk-venue">INFORMS Annual Meeting</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">Jun 2022</span>
+          <div>
+            <div class="talk-text">An Algorithmic Framework for Bias Bounties</div>
+            <div class="talk-venue">Oral presentation at ACM Conference on Fairness Accountability and Transparency (FAccT)</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">Apr 2022</span>
+          <div>
+            <div class="talk-text">An Algorithmic Framework for Bias Bounties</div>
+            <div class="talk-venue">Reed College Computer Science Colloquium</div>
+          </div>
+        </div>
+        <div class="talk-item">
+          <span class="talk-year">Oct 2021</span>
+          <div>
+            <div class="talk-text">Lexicographically Fair Learning: Algorithms and Generalization</div>
+            <div class="talk-venue">Theory of Computation for Fairness Seminar, Simons Institute</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+   <!-- Advising -->
+    <section id="advising">
+      <h1 class="section-title">Advising</h1>
+      <p style="font-size:0.92rem; color: var(--text-muted); margin-bottom: 24px; font-family: var(--sans);">Undergraduate thesis advising for the Reed College computer science department </p>
+      <div class="advising-list">
+
+        <div class="advising-item">
+          <div class="advising-name">April Kopec</div>
+          <div class="advising-thesis">Scaling Explainable Artificial Intelligence: Filtering and Approximations for Influence Functions for Large Language Models</div>
+          <div class="advising-meta">2023–2024</div>
+        </div>
+
+        <div class="advising-item">
+          <div class="advising-name">Becca Luff</div>
+          <div class="advising-thesis">Human Understandings of Fairness</div>
+          <div class="advising-meta"> 2022–2023 · Co-advised with Adam Groce</div>
+        </div>
+
+        <div class="advising-item">
+          <div class="advising-name"><a href="https://www.linkedin.com/in/daniel-zou-631b1b218/" target="_blank">Daniel Zou</a></div>
+          <div class="advising-thesis">Differentially Private Weighted Regression</div>
+          <div class="advising-meta"> 2022–2023 · Co-advised with Leonard Wainstein</div>
+        </div>
+
+      </div>
+    </section>
+
     <!-- Teaching -->
     <section id="teaching">
       <h1 class="section-title">Teaching</h1>
       <div class="teaching-list">
-        <div class="teaching-item">
-          <span class="teaching-term">Fall 2022–Spring 2024</span>
-          <span>Undergraduate thesis advisor, Reed College</span>
-        </div>
         <div class="teaching-item">
           <span class="teaching-term">Spring 2022</span>
           <span>Head TA &amp; course design — CIS 423/523 Ethical Algorithm Design, University of Pennsylvania</span>
@@ -668,6 +789,8 @@
         <a class="affil-tag" href="https://multiparty.org">Multiparty.org</a>
       </div>
     </section>
+
+    
 
   </main>
 </div>
